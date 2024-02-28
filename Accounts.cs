@@ -56,5 +56,10 @@ namespace Topic9
         {
             lastTransaction = updatedLastTransaction;
         }
+
+        public virtual String queryType()
+        {
+            return "Unspecified";
+        }
     }
 }

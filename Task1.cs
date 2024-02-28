@@ -18,6 +18,16 @@ namespace Topic9
         BasicAccount basicCurrent = null;
         List<Accounts> accountList = new List<Accounts>();
 
+        public void addBasicAccount(String accountNum, String p, int bal)
+        {
+            accountList.Add(new BasicAccount(accountNum, p, bal));
+        }
+
+        public void addExtendedAccount(String accountNum, String p, int bal)
+        {
+            accountList.Add(new ExtendedAccount(accountNum, p, bal));
+        }
+
         private void buttonBAL_Click(object sender, EventArgs e)
         {
             if (current == null)
@@ -120,7 +130,7 @@ namespace Topic9
                     }
                     else
                     {
-                        enteredTxt = "Logged in - Choose a transaction.";
+                        enteredTxt = "Logged into "+current.queryType()+" - Choose a transaction.";
                         updateDisplay();
                         enteredTxt = "";
                     }
@@ -250,10 +260,10 @@ namespace Topic9
         public Task1()
         {
             InitializeComponent();
-            accountList.Add(new BasicAccount("1234","1234", 500000));
-            accountList.Add(new BasicAccount("5678","5678", 100000));
-            accountList.Add(new BasicAccount("9999","9999", 150000));
-            accountList.Add(new BasicAccount("6969","6969", 200000));
+            addBasicAccount("1234", "1234", 500000);
+            addBasicAccount("5678", "5678", 400000);
+            addExtendedAccount("9999","9999", 150000);
+            addExtendedAccount("6969","6969", 200000);
             inputPermit = true;
         }
 

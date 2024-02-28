@@ -48,10 +48,16 @@ namespace Topic9
 
             }
         }
+
         public override int getBalance()
         {
             return base.getBalance();
             
+        }
+
+        public override string queryType()
+        {
+            return "Basic Account";
         }
     }
 }
