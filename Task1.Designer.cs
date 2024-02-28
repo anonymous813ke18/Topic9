@@ -203,7 +203,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(327, 210);
             this.label2.TabIndex = 48;
-            this.label2.Text = "ENTER PINCODE HERE";
+            this.label2.Text = "ENTER ACCOUNT HERE";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1

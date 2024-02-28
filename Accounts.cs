@@ -8,29 +8,35 @@ namespace Topic9
 {
     public class Accounts
     {
-        String PIN, lastTransaction;
+        String PIN, lastTransaction, accountNumber;
         int Balance;
 
-        public Accounts(String p, int b)
+        public Accounts(String p, String an, int b)
         {
             PIN = p;
+            accountNumber = an;
             Balance = b;
         }
 
-        public Boolean checkPin(String p)
+        public virtual Boolean checkPin(String a,String p)
         {
+            if (accountNumber.ToLower().Equals(a.ToLower()) == false)
+                return false;
+
             if (PIN.ToLower().Equals(p.ToLower()))
                 return true;
             else return false;
 
         }
 
-        public int getBalance()
+        public virtual int getBalance()
         {
             return Balance;
         }
 
-        public Boolean withdraw(int amount)
+        public void updateBalance(int updatedBalane) { Balance = updatedBalane; }
+
+        public virtual Boolean withdraw(int amount)
         {
             if (amount > Balance) return false;
             lastTransaction = "Balance was = " + Balance + "\nAmount withdrawn = " + amount;
@@ -39,11 +45,16 @@ namespace Topic9
             return true;
         }
 
-        public String getLastTransaction()
+        public virtual String getLastTransaction()
         {
             if (lastTransaction == null)
                 return "No transactions!";
             return lastTransaction;
+        }
+
+        public void updateLastTransaction (String updatedLastTransaction)
+        {
+            lastTransaction = updatedLastTransaction;
         }
     }
 }

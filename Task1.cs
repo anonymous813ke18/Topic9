@@ -12,9 +12,10 @@ namespace Topic9
 {
     public partial class Task1 : Form
     {
-        String enteredTxt = "";
+        String enteredTxt = "",PIN = "", accountNumber = "";
         Boolean inputPermit, withdrawing, reciept, confirm, deny;
         Accounts current = null;
+        BasicAccount basicCurrent = null;
         List<Accounts> accountList = new List<Accounts>();
 
         private void buttonBAL_Click(object sender, EventArgs e)
@@ -60,7 +61,22 @@ namespace Topic9
                 inputPermit = false;
                 if (current == null)
                 {
-                    current = FindAccount(enteredTxt);
+                    if (accountNumber == "")
+                    {
+                        accountNumber = enteredTxt;
+                        enteredTxt = "";
+                        updateDisplay();
+                        label2.Text = "ENTER PIN HERE";
+                        inputPermit = true;
+                        return;
+                    }
+                    if (PIN == "")
+                    {
+                        PIN = enteredTxt;
+                        enteredTxt = "";
+                        updateDisplay();
+                        current = FindAccount(PIN, accountNumber);
+                    }                    
                 }
                 if (current != null)
                 {
@@ -234,10 +250,10 @@ namespace Topic9
         public Task1()
         {
             InitializeComponent();
-            accountList.Add(new Accounts("1234", 500000));
-            accountList.Add(new Accounts("5678", 100000));
-            accountList.Add(new Accounts("9999", 150000));
-            accountList.Add(new Accounts("6969", 200000));
+            accountList.Add(new BasicAccount("1234","1234", 500000));
+            accountList.Add(new BasicAccount("5678","5678", 100000));
+            accountList.Add(new BasicAccount("9999","9999", 150000));
+            accountList.Add(new BasicAccount("6969","6969", 200000));
             inputPermit = true;
         }
 
@@ -246,7 +262,7 @@ namespace Topic9
             txtOutput.Text = enteredTxt;
         }
 
-        public Accounts FindAccount(String enteredText)
+        public Accounts FindAccount(String pin, String accountnumber)
         {
 
             //if (a1.checkPin(enteredText))
@@ -259,7 +275,7 @@ namespace Topic9
             //    return a4;
             foreach (Accounts account in accountList)
             {
-                if (account.checkPin(enteredText))
+                if (account.checkPin(accountnumber, pin))
                     return account;
             }
             return null;
